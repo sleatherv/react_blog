@@ -2,7 +2,7 @@ import React from 'react';
 
 const App = () => {
 
-    const ponerFilas = () => [
+    const setRows = () => [
         <tr>
             <td>
                 Rodolfo
@@ -44,7 +44,7 @@ const App = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {ponerFilas()}
+                    {setRows()}
                 </tbody>
             </table>
         </div>
