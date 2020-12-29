@@ -19,7 +19,7 @@ const App = () => {
                 Rodolfo
 			</td>
             <td>
-                Rodolfo@platzi.com
+                sleather@gmail.com
 			</td>
             <td>
                 Rodolfo.com
