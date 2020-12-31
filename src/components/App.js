@@ -1,54 +1,62 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const App = () => {
+class App extends Component {
+    constructor() {
+        super();
+        this.state = {
+            users: []
+        }
+    }
+    componentDidMount() {
+        this.setState({
+            users: [
+                {
+                    name: 'Steve',
+                    email: 'steve@gmail.com',
+                    link: 'steve.com'
+                },
+                {
+                    name: 'Luis',
+                    email: 'luis@gmail.com',
+                    link: 'luis.com'
+                }
+            ]
+        });
+    }
+    setRows = () => (
+        this.state.users.map((user) => (
+            <tr>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td>{user.link}</td>
+            </tr>
+        ))
+    );
 
-    const setRows = () => [
-        <tr>
-            <td>
-                Rodolfo
-			</td>
-            <td>
-                Rodolfo@platzi.com
-			</td>
-            <td>
-                Rodolfo.com
-			</td>
-        </tr>,
-        <tr>
-            <td>
-                Rodolfo
-			</td>
-            <td>
-                sleather@gmail.com
-			</td>
-            <td>
-                Rodolfo.com
-			</td>
-        </tr>
-    ];
-
-    return (
-        <div className="margen">
-            <table className="tabla">
-                <thead>
-                    <tr>
-                        <th>
-                            Nombre
-						</th>
-                        <th>
-                            Correo
-						</th>
-                        <th>
-                            Enlace
-						</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {setRows()}
-                </tbody>
-            </table>
-        </div>
-    )
+    render() {
+        return (
+            <div className="margen">
+                <table className="tabla">
+                    <thead>
+                        <tr>
+                            <th>
+                                Nombre
+                            </th>
+                            <th>
+                                Correo
+                            </th>
+                            <th>
+                                Enlace
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.setRows()}
+                    </tbody>
+                </table>
+            </div>
+        );
+    }
 };
 
 export default App;
