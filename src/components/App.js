@@ -1,62 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+import Menu from "./Menu";
+import Users from './Users';
 
-class App extends Component {
-    constructor() {
-        super();
-        this.state = {
-            users: []
-        }
-    }
-    componentDidMount() {
-        this.setState({
-            users: [
-                {
-                    name: 'Steve',
-                    email: 'steve@gmail.com',
-                    link: 'steve.com'
-                },
-                {
-                    name: 'Luis',
-                    email: 'luis@gmail.com',
-                    link: 'luis.com'
-                }
-            ]
-        });
-    }
-    setRows = () => (
-        this.state.users.map((user) => (
-            <tr>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>{user.link}</td>
-            </tr>
-        ))
-    );
+const Tasks = () => <div>Tasks</div>
 
-    render() {
-        return (
-            <div className="margen">
-                <table className="tabla">
-                    <thead>
-                        <tr>
-                            <th>
-                                Nombre
-                            </th>
-                            <th>
-                                Correo
-                            </th>
-                            <th>
-                                Enlace
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.setRows()}
-                    </tbody>
-                </table>
-            </div>
-        );
-    }
-};
+const App = () => {
+    return (
+        <BrowserRouter>
+            <Menu />
+            <Route exact path='/' component={Users} />
+            <Route exact path='/tasks' component={Tasks} />
+        </BrowserRouter>
+    )
+}
 
 export default App;
