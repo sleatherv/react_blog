@@ -2,7 +2,7 @@ const INITIAL_STATE = {
     users: []
 };
 
-const userReducer = (state = INITIAL_STATE, action) => {
+const usersReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case 'get_users':
             return { ...state, users: action.payload };
@@ -11,4 +11,4 @@ const userReducer = (state = INITIAL_STATE, action) => {
     }
 }
 
-export default userReducer;
+export default usersReducer;
