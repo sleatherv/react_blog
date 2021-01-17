@@ -16,7 +16,7 @@ export const getAll = () => async (dispatch) => {
     dispatch({
       type: ERROR,
       payload: "Something went wrong. Try again later."
-    })
+    });
   }
 };
 
