@@ -9,7 +9,8 @@ export const getAll = () => async (dispatch) => {
         const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
         dispatch({
             type: GET_ALL,
-            payload: response.data
+            payload: response.data,
+            error: '',
         });
     } catch (error) {
         console.log(`Error: ${error.message}`);
@@ -18,4 +19,14 @@ export const getAll = () => async (dispatch) => {
             payload: "Something went wrong. Try again later."
         });
     }
+}
+export const getPostsByUser = (key) => async (dispatch, getState) => {
+    const { users } = getState().usersReducer;
+    const user_id = users[key].id;
+
+    const response = await axios.get(`https://jsonplaceholder.typicode.com/posts?userId=${user_id}`);
+    dispatch({
+        type: GET_ALL,
+        payload: response.data
+    });
 }
