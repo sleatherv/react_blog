@@ -7,7 +7,9 @@ import Table from '../Users/UsersTable';
 import * as usersActions from '../../actions/usersActions';
 class Users extends Component {
     componentDidMount() {
-        this.props.getAll();
+        if (!this.props.users.length) {
+            this.props.getAll();
+        }
     }
     setContent = () => {
         if (this.props.loading) {
