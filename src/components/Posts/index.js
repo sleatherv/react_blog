@@ -8,10 +8,18 @@ const { getAll: getAllUsers } = usersActions;
 const { getPostsByUser: getPostsByUser } = postsActions;
 class Posts extends Component {
     async componentDidMount() {
+        const {
+            getAllUsers,
+            getPostsByUser,
+            match: { params: { key } },
+        } = this.props;
+
         if (!this.props.usersReducer.users.length) {
             await this.props.getAllUsers();
         }
-        this.props.getPostsByUser(this.props.match.params.key);
+        if (!('posts_key' in this.props.usersReducer.users[key])) {
+            this.props.getPostsByUser(key);
+        }
     }
     render() {
         console.log(this.props)
