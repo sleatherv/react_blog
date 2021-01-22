@@ -18,26 +18,26 @@ export const getPostsByUser = (key) => async (dispatch, getState) => {
             ...posts,
             response.data
         ];
-        const posts_key = updated_posts.length - 1;
-        const updated_users = [...users];
         dispatch({
-            type: GET_ALL_USERS,
-            payload: updated_users
+            type: GET_BY_USER,
+            payload: updated_posts
         });
 
+        const posts_key = updated_posts.length - 1;
+        const updated_users = [...users];
         updated_users[key] = {
             ...users[key],
             posts_key
         }
         dispatch({
-            type: GET_BY_USER,
-            payload: updated_posts
+            type: GET_ALL_USERS,
+            payload: updated_users
         });
     } catch (error) {
         console.log(error.message);
         dispatch({
             type: ERROR,
-            payload: ' No Posts'
+            payload: 'Posts not available'
         })
     }
 

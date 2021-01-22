@@ -66,7 +66,11 @@ class Posts extends Component {
         const { posts_key } = users[key];
 
         return posts[posts_key].map((post) => (
-            <div className='pub_title'>
+            <div
+                className='pub_title'
+                key={post.id}
+                onClick={() => alert(post.id)}
+            >
                 <h2>{post.title}</h2>
                 <h3>{post.body}</h3>
             </div>
@@ -75,10 +79,10 @@ class Posts extends Component {
     render() {
         console.log(this.props)
         return (
-            <div>
+            <>
                 {this.setUser()}
                 {this.setPosts()}
-            </div>
+            </>
         )
     }
 }
