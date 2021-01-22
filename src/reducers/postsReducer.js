@@ -12,7 +12,7 @@ const postsReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 posts: action.payload,
-                loading: LOADING,
+                loading: false,
                 error: '',
             };
         case LOADING:

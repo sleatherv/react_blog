@@ -1,12 +1,12 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import Sinner from '../General/Spinner';
+
+import Spinner from '../General/Spinner';
 import Fatal from '../General/Fatal';
 
 import * as usersActions from '../../actions/usersActions';
 import * as postsActions from '../../actions/postsActions';
-import Spinner from '../General/Spinner';
 
 const { getAll: getAllUsers } = usersActions;
 const { getPostsByUser: getPostsByUser } = postsActions;
@@ -43,12 +43,41 @@ class Posts extends Component {
 
         return <h1>Posts by {name}</h1>;
     };
+    setPosts = () => {
+        const {
+            usersReducer,
+            usersReducer: { users },
+            postsReducer,
+            postsReducer: { posts },
+            match: { params: { key } },
+        } = this.props;
+        if (!users.length) return;
+        if (usersReducer.erro) return;
+
+        if (postsReducer.loading) {
+            return <Spinner />
+        }
+        if (postsReducer.error) {
+            return <Fatal message={postsReducer.error} />
+        }
+        if (!posts.length) return;
+        if (!('posts_key' in users[key])) return;
+
+        const { posts_key } = users[key];
+
+        return posts[posts_key].map((post) => (
+            <div className='pub_title'>
+                <h2>{post.title}</h2>
+                <h3>{post.body}</h3>
+            </div>
+        ));
+    }
     render() {
         console.log(this.props)
         return (
             <div>
                 {this.setUser()}
-                {this.props.match.params.key}
+                {this.setPosts()}
             </div>
         )
     }
