@@ -14,15 +14,21 @@ export const getPostsByUser = (key) => async (dispatch, getState) => {
     const user_id = users[key].id;
     try {
         const response = await axios.get(`https://jsonplaceholder.typicode.com/posts?userId=${user_id}`);
+
+        const news = response.data.map((post) => ({
+            ...post,
+            comments: [],
+            open: false
+        }));
+
         const updated_posts = [
             ...posts,
-            response.data
+            news
         ];
         dispatch({
             type: GET_BY_USER,
             payload: updated_posts
         });
-
         const posts_key = updated_posts.length - 1;
         const updated_users = [...users];
         updated_users[key] = {
@@ -41,4 +47,8 @@ export const getPostsByUser = (key) => async (dispatch, getState) => {
         })
     }
 
+}
+
+export const openClose = (posts_key, com_key) => (dispatch) => {
+    console.log(posts_key, com_key);
 }
