@@ -1,9 +1,19 @@
-import { UPDATE, LOADING, ERROR } from "../types/postsTypes";
+import {
+    UPDATE,
+    UPDATE_COMM,
+    LOADING,
+    ERROR,
+    LOADING_COMM,
+    ERROR_COMM
+} from "../types/postsTypes";
 
 const INITIAL_STATE = {
     posts: [],
     loading: false,
-    error: ''
+    error: '',
+    loading_comm: false,
+    error_comm: ''
+
 };
 
 const postsReducer = (state = INITIAL_STATE, action) => {
@@ -15,10 +25,21 @@ const postsReducer = (state = INITIAL_STATE, action) => {
                 loading: false,
                 error: '',
             };
+        case UPDATE_COMM:
+            return {
+                ...state,
+                posts: action.payload,
+                loading_comm: false,
+                error_comm: '',
+            };
         case LOADING:
             return { ...state, loading: true };
         case ERROR:
             return { ...state, error: action.payload, loading: false };
+        case LOADING_COMM:
+            return { ...state, loading_comm: true };
+        case ERROR_COMM:
+            return { ...state, error_comm: action.payload, loading_comm: false };
         default:
             return state;
     }
