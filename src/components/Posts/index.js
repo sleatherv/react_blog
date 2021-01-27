@@ -4,12 +4,15 @@ import { connect } from 'react-redux';
 
 import Spinner from '../General/Spinner';
 import Fatal from '../General/Fatal';
+import Comments from './Comments';
 
 import * as usersActions from '../../actions/usersActions';
 import * as postsActions from '../../actions/postsActions';
 
 const { getAll: getAllUsers } = usersActions;
-const { getPostsByUser: getPostsByUser, openClose } = postsActions;
+const { getPostsByUser: getPostsByUser,
+    openClose,
+    getComments } = postsActions;
 class Posts extends Component {
     async componentDidMount() {
         const {
@@ -75,17 +78,22 @@ class Posts extends Component {
             <div
                 className='pub_title'
                 key={post.id}
-                onClick={() => this.props.openClose(posts_key, com_key)}
+                onClick={() => this.showComments(posts_key, com_key, post.comments)}
             >
                 <h2>{post.title}</h2>
                 <h3>{post.body}</h3>
                 {
-                    (post.open) ? 'Open' : 'Closed'
+                    (post.open) ? <Comments /> : ''
                 }
             </div>
         ))
     );
-
+    showComments = (posts_key, com_key, comments) => {
+        this.props.openClose(posts_key, com_key);
+        if (!comments.length) {
+            this.props.getComments(posts_key, com_key);
+        }
+    }
     render() {
         console.log(this.props)
         return (
@@ -107,7 +115,8 @@ const mapStateToProps = ({ usersReducer, postsReducer }) => {
 const mapDispatchToProps = {
     getAllUsers,
     getPostsByUser,
-    openClose
+    openClose,
+    getComments
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);
