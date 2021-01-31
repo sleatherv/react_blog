@@ -3,7 +3,7 @@ body {
 }
 
 .margen {
-    margin: 100px;
+    margin: 100px 300px;
 }
 
 .tabla {
@@ -32,11 +32,35 @@ body {
 }
 
 .pub_title {
-    border-top: 1px solid black;
+    border-bottom: 1px solid #ddd;
+    border-left: 6px solid #438fb8;
+    border-radius: 10px;
+    padding-left: 10px;
     cursor: pointer;
 }
 
 li {
     margin: 15px 0 15px 0;
     list-style: none;
+    border: 1px solid #253a45;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+tr {
+    border: 1px solid #ddd;
+}
+
+td, th {
+    border-right: 1px solid #ddd;
+    padding: 5px;
+}
+
+.eye {
+    display: flex;
+    justify-content: center;
 }

@@ -15,9 +15,7 @@ const Comments = (props) => {
         props.comments.map((comment) => (
             <li key={comment.id}>
                 <b>
-                    <u>
-                        {comment.email}
-                    </u>
+                    {comment.email}
                 </b>
                 <br />
                 <p>{comment.body}</p>
@@ -25,9 +23,12 @@ const Comments = (props) => {
         ))
     );
     return (
-        <ul>
-            {setComments()}
-        </ul>
+        <>
+            <h2>Comments</h2>
+            <ul>
+                {setComments()}
+            </ul>
+        </>
     )
 }
 

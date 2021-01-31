@@ -9,7 +9,7 @@ const UsersTable = (props) => {
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>{user.website}</td>
-                <td>
+                <td className="eye">
                     <Link to={`/posts/${key}`}>
                         <div className="eye-solid icon"></div>
                     </Link>
@@ -23,14 +23,17 @@ const UsersTable = (props) => {
                 <thead>
                     <tr>
                         <th>
-                            Nombre
+                            Name
                             </th>
                         <th>
-                            Correo
+                            Email
                             </th>
                         <th>
-                            Enlace
-                            </th>
+                            WebSite
+                        </th>
+                        <th>
+                            Posts
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
