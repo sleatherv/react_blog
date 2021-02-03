@@ -7,9 +7,19 @@ export const getAllTasks = () => async (dispatch) => {
     });
     try {
         const resp = await axios.get('https://jsonplaceholder.typicode.com/todos');
+
+        const tasks = {};
+        resp.data.map((tas) => (
+            tasks[tas.userId] = {
+                ...tasks[tas.userId],
+                [tas.id]: {
+                    ...tas
+                }
+            }
+        ));
         dispatch({
             type: GET_ALL_TASKS,
-            payload: resp.data,
+            payload: tasks,
         });
     } catch (error) {
         console.log(`Error: ${error.message}`);
