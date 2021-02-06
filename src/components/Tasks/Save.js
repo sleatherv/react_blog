@@ -11,6 +11,17 @@ class Save extends Component {
     changeTitle = (e) => {
         this.props.changeTitle(e.target.value);
     }
+
+    saveTask = (e) => {
+        e.preventDefault();
+        const { user_id, title, add } = this.props;
+        const new_task = {
+            userId: user_id,
+            title: title,
+            completed: false
+        };
+        add(new_task);
+    }
     render() {
         return (
             <>
@@ -37,9 +48,11 @@ class Save extends Component {
                     </label>
                     <br />
                     <br />
-                    <button>
-                        Save
-                    </button>
+                    <input
+                        type='submit'
+                        value='Save task'
+                        onClick={this.saveTask}
+                    />
                 </form>
             </>
         )

@@ -28,6 +28,9 @@ const tasksReducer = (state = INITIAL_STATE, action) => {
 
         case 'change_title':
             return { ...state, title: action.payload }
+
+        case 'added':
+            return { ...state, tasks: {}, loading: false, error: '' }
         default:
             return state;
     }
