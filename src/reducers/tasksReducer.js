@@ -12,7 +12,8 @@ const INITIAL_STATE = {
     loading: false,
     error: '',
     user_id: '',
-    title: ''
+    title: '',
+    to_return: ''
 };
 
 const tasksReducer = (state = INITIAL_STATE, action) => {
@@ -23,6 +24,7 @@ const tasksReducer = (state = INITIAL_STATE, action) => {
                 tasks: action.payload,
                 loading: false,
                 error: '',
+                to_return: false
             };
         case LOADING:
             return { ...state, loading: true };
@@ -37,7 +39,15 @@ const tasksReducer = (state = INITIAL_STATE, action) => {
             return { ...state, title: action.payload }
 
         case ADDED_TASK:
-            return { ...state, tasks: {}, loading: false, error: '' }
+            return {
+                ...state,
+                tasks: {},
+                loading: false,
+                error: '',
+                to_return: true,
+                user_id: '',
+                title: ''
+            }
         default:
             return state;
     }

@@ -51,7 +51,7 @@ export const changeTitle = (title) => (dispatch) => {
     })
 }
 export const add = (task) => async (dispatch) => {
-    console.log(task)
+    //console.log(task)
     dispatch({
         type: LOADING
     });
