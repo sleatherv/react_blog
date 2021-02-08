@@ -8,7 +8,9 @@ import * as tasksActions from '../../actions/tasksActions';
 
 class Tasks extends Component {
     componentDidMount() {
-        this.props.getAllTasks();
+        if (!Object.keys(this.props.tasks).length) {
+            this.props.getAllTasks();
+        }
     }
     showContent = () => {
         const { tasks, loading, error } = this.props;
