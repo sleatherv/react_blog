@@ -18,13 +18,30 @@ class Save extends Component {
 
     saveTask = (e) => {
         e.preventDefault();
-        const { user_id, title, add } = this.props;
+        const {
+            match: { params: { us_id, task_id } },
+            tasks,
+            user_id,
+            title,
+            add,
+            edit
+        } = this.props;
         const new_task = {
             userId: user_id,
             title: title,
             completed: false
         };
-        add(new_task);
+        if (us_id && task_id) {
+            const task = tasks[us_id][task_id];
+            const edited_task = {
+                ...new_task,
+                completed: task.completed,
+                id: task.id
+            };
+            edit(edited_task);
+        } else {
+            add(new_task);
+        }
     }
     disableButton = () => {
         const { user_id, title, loading } = this.props;
@@ -43,6 +60,20 @@ class Save extends Component {
         }
         if (error) {
             return <Fatal message='Try again' />
+        }
+    }
+    componentDidMount() {
+        const {
+            match: { params: { user_id, task_id } },
+            tasks,
+            changeUserId,
+            changeTitle
+        } = this.props;
+
+        if (user_id && task_id) {
+            const task = tasks[user_id][task_id];
+            changeUserId(task.userId);
+            changeTitle(task.title);
         }
     }
     render() {
@@ -76,6 +107,7 @@ class Save extends Component {
                     <br />
                     <input
                         type='submit'
+                        className='btn btn_save'
                         value='Save task'
                         onClick={this.saveTask}
                         disabled={this.disableButton()}

@@ -30,14 +30,28 @@ class Tasks extends Component {
         ))
     }
     setTasks = (user_id) => {
-        const { tasks } = this.props;
+        const { tasks, changeCheck } = this.props;
         const perUser = {
             ...tasks[user_id]
         };
         return Object.keys(perUser).map((task_id) => (
-            <div key={task_id}>
-                <input type='checkbox' defaultChecked={perUser[task_id].completed} />
-                {perUser[task_id].title}
+            <div className='task_row' key={task_id}>
+                <div>
+                    <input
+                        type='checkbox'
+                        defaultChecked={perUser[task_id].completed}
+                        onChange={() => this.props.changeCheck(user_id, task_id)}
+                    />
+                    {perUser[task_id].title}
+                </div>
+                <div>
+                    <Link to={`/tasks/save/${user_id}/${task_id}`}>
+                        <button className="m_left btn btn_edit">
+                            Edit
+                </button>
+                    </Link>
+                    <button className="m_left btn btn_delete">Delete</button>
+                </div>
             </div>
         ));
     }
@@ -45,7 +59,7 @@ class Tasks extends Component {
         return (
             <>
                 <Link to='/tasks/save'>
-                    <button>Add</button>
+                    <button className='btn btn_add'>Add Tasks</button>
                 </Link>
                 {this.showContent()}
             </>

@@ -5,7 +5,8 @@ import {
     ERROR,
     CHANGE_USER_ID,
     CHANGE_TITLE,
-    ADDED_TASK
+    SAVE,
+    UPDATE
 } from '../types/tasksTypes';
 
 export const getAllTasks = () => async (dispatch) => {
@@ -59,7 +60,7 @@ export const add = (task) => async (dispatch) => {
         const response = await axios.post(`https://jsonplaceholder.typicode.com/todos`, task);
         console.log(response.data);
         dispatch({
-            type: ADDED_TASK
+            type: SAVE
         })
 
     } catch (error) {
@@ -68,4 +69,42 @@ export const add = (task) => async (dispatch) => {
             payload: 'Try later'
         });
     }
+}
+export const edit = (edited_task) => async (dispatch) => {
+
+    dispatch({
+        type: LOADING
+    });
+    try {
+        const response = await axios.put(`https://jsonplaceholder.typicode.com/todos/${edited_task.id}`, edited_task);
+        console.log(response.data);
+        dispatch({
+            type: SAVE
+        })
+
+    } catch (error) {
+        dispatch({
+            type: ERROR,
+            payload: 'Try later'
+        });
+    }
+}
+export const changeCheck = (user_id, task_id) => (dispatch, getState) => {
+    const { tasks } = getState().tasksReducer;
+    const selected = tasks[user_id][task_id];
+    const updated = {
+        ...tasks,
+    };
+    updated[user_id] = {
+        ...tasks[user_id]
+    };
+    updated[user_id][task_id] = {
+        ...tasks[user_id][task_id],
+        completed: !selected.completed
+    };
+
+    dispatch({
+        type: UPDATE,
+        payload: updated
+    });
 }
