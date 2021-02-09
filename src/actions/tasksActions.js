@@ -108,3 +108,23 @@ export const changeCheck = (user_id, task_id) => (dispatch, getState) => {
         payload: updated
     });
 }
+export const deleteTaks = (task_id) => async (dispatch) => {
+    dispatch({
+        type: LOADING,
+    });
+    try {
+        const response = await axios.delete(`https://jsonplaceholder.typicode.com/todos/${task_id}`);
+        console.log(response);
+        dispatch({
+            type: GET_ALL_TASKS,
+            payload: {}
+        })
+
+    } catch (error) {
+        console.log(error.message);
+        dispatch({
+            type: ERROR,
+            payload: 'Service not available'
+        });
+    }
+}

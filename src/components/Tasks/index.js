@@ -12,6 +12,11 @@ class Tasks extends Component {
             this.props.getAllTasks();
         }
     }
+    componentDidUpdate() {
+        if (!Object.keys(this.props.tasks).length) {
+            this.props.getAllTasks();
+        }
+    }
     showContent = () => {
         const { tasks, loading, error } = this.props;
         if (loading) {
@@ -27,10 +32,10 @@ class Tasks extends Component {
                     {this.setTasks(user_id)}
                 </div>
             </div>
-        ))
+        ));
     }
     setTasks = (user_id) => {
-        const { tasks, changeCheck } = this.props;
+        const { tasks, changeCheck, deleteTaks } = this.props;
         const perUser = {
             ...tasks[user_id]
         };
@@ -50,12 +55,18 @@ class Tasks extends Component {
                             Edit
                 </button>
                     </Link>
-                    <button className="m_left btn btn_delete">Delete</button>
+                    <button
+                        className="m_left btn btn_delete"
+                        onClick={() => deleteTaks(task_id)}
+                    >
+                        Delete
+                    </button>
                 </div>
             </div>
         ));
     }
     render() {
+        console.log(this.props.tasks);
         return (
             <>
                 <Link to='/tasks/save'>
