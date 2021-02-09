@@ -16,7 +16,7 @@ class Tasks extends Component {
         const { tasks, loading, getAllTasks } = this.props;
 
         if (!Object.keys(tasks).length && !loading) {
-            this.props.getAllTasks();
+            getAllTasks();
         }
     }
     showContent = () => {
