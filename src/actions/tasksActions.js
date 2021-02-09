@@ -6,7 +6,8 @@ import {
     CHANGE_USER_ID,
     CHANGE_TITLE,
     SAVE,
-    UPDATE
+    UPDATE,
+    CLEAN
 } from '../types/tasksTypes';
 
 export const getAllTasks = () => async (dispatch) => {
@@ -30,7 +31,6 @@ export const getAllTasks = () => async (dispatch) => {
             payload: tasks,
         });
     } catch (error) {
-        console.log(`Error: ${error.message}`);
         dispatch({
             type: ERROR,
             payload: "Tasks information not available."
@@ -52,13 +52,11 @@ export const changeTitle = (title) => (dispatch) => {
     })
 }
 export const add = (task) => async (dispatch) => {
-    //console.log(task)
     dispatch({
         type: LOADING
     });
     try {
         const response = await axios.post(`https://jsonplaceholder.typicode.com/todos`, task);
-        console.log(response.data);
         dispatch({
             type: SAVE
         })
@@ -77,7 +75,7 @@ export const edit = (edited_task) => async (dispatch) => {
     });
     try {
         const response = await axios.put(`https://jsonplaceholder.typicode.com/todos/${edited_task.id}`, edited_task);
-        console.log(response.data);
+
         dispatch({
             type: SAVE
         })
@@ -114,17 +112,20 @@ export const deleteTaks = (task_id) => async (dispatch) => {
     });
     try {
         const response = await axios.delete(`https://jsonplaceholder.typicode.com/todos/${task_id}`);
-        console.log(response);
         dispatch({
             type: GET_ALL_TASKS,
             payload: {}
         })
 
     } catch (error) {
-        console.log(error.message);
         dispatch({
             type: ERROR,
             payload: 'Service not available'
         });
     }
+}
+export const cleanForm = () => (dispatch) => {
+    dispatch({
+        type: CLEAN
+    })
 }

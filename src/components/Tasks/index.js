@@ -13,7 +13,9 @@ class Tasks extends Component {
         }
     }
     componentDidUpdate() {
-        if (!Object.keys(this.props.tasks).length) {
+        const { tasks, loading, getAllTasks } = this.props;
+
+        if (!Object.keys(tasks).length && !loading) {
             this.props.getAllTasks();
         }
     }
@@ -66,7 +68,6 @@ class Tasks extends Component {
         ));
     }
     render() {
-        console.log(this.props.tasks);
         return (
             <>
                 <Link to='/tasks/save'>

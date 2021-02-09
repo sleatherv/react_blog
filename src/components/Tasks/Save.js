@@ -67,13 +67,16 @@ class Save extends Component {
             match: { params: { user_id, task_id } },
             tasks,
             changeUserId,
-            changeTitle
+            changeTitle,
+            cleanForm
         } = this.props;
 
         if (user_id && task_id) {
             const task = tasks[user_id][task_id];
             changeUserId(task.userId);
             changeTitle(task.title);
+        } else {
+            cleanForm();
         }
     }
     render() {
