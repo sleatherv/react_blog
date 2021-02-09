@@ -110,3 +110,16 @@ td, th {
 .btn_save {
     background-color: blue;
 }
+
+.form_label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.form_label>input {
+    max-width: 150px;
+    margin-top: 5px;
+    border: 1px solid #253a45;
+    border-radius: 10px;
+}

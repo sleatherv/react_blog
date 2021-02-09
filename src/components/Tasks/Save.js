@@ -89,7 +89,7 @@ class Save extends Component {
                     Save Task
                 </h1>
                 <form action="">
-                    <label htmlFor="user_id">
+                    <label className='form_label' htmlFor="user_id">
                         <span>User id:</span>
                         <input
                             type='number'
@@ -97,8 +97,7 @@ class Save extends Component {
                             onChange={this.changeUserId}
                             id='user_id' />
                     </label>
-                    <br /> <br />
-                    <label htmlFor="title">
+                    <label className='form_label' htmlFor="title">
                         <span>Title:</span>
                         <input
                             type="text"
@@ -106,8 +105,6 @@ class Save extends Component {
                             onChange={this.changeTitle}
                             id='title' />
                     </label>
-                    <br />
-                    <br />
                     <input
                         type='submit'
                         className='btn btn_save'
