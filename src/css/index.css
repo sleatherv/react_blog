@@ -3,7 +3,7 @@ body {
 }
 
 .margen {
-    margin: 100px;
+    margin: 100px 300px;
 }
 
 .tabla {
@@ -29,4 +29,97 @@ body {
 
 .center {
     text-align: center;
+}
+
+.pub_title {
+    border-bottom: 1px solid #ddd;
+    border-left: 6px solid #438fb8;
+    border-radius: 10px;
+    padding-left: 10px;
+    cursor: pointer;
+}
+
+li {
+    margin: 15px 0 15px 0;
+    list-style: none;
+    border: 1px solid #253a45;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+tr {
+    border: 1px solid #ddd;
+}
+
+td, th {
+    border-right: 1px solid #ddd;
+    padding: 5px;
+}
+
+.eye {
+    display: flex;
+    justify-content: center;
+}
+
+.tasks_container {
+    font-size: 20px;
+    margin-left: 50px;
+    margin-bottom: 70px;
+}
+
+.m_left {
+    margin-left: 15px;
+}
+
+.task_row {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-left: 7px solid #438fb8;
+    border-radius: 10px;
+}
+
+.btn {
+    padding: 5px 10px;
+    color: white;
+    border-radius: 5px;
+    border: 1px solid;
+}
+
+.btn_delete {
+    background-color: rgb(204, 58, 58);
+}
+
+.btn_add {
+    background-color: rgb(24, 129, 14);
+}
+
+.btn_edit {
+    background-color: rgb(204, 146, 58);
+}
+
+.btn_save {
+    background-color: blue;
+}
+
+.form_label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.form_label>input {
+    max-width: 150px;
+    margin-top: 5px;
+    border: 1px solid #253a45;
+    border-radius: 10px;
 }

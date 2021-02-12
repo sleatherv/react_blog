@@ -1,13 +1,19 @@
 import React from 'react';
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 
-const Table = (props) => {
+const UsersTable = (props) => {
     const setRows = () => (
-        props.users.map((user) => (
+        props.users.map((user, key) => (
             <tr key={user.id}>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>{user.website}</td>
+                <td className="eye">
+                    <Link to={`/posts/${key}`}>
+                        <div className="eye-solid icon"></div>
+                    </Link>
+                </td>
             </tr>
         ))
     );
@@ -17,14 +23,17 @@ const Table = (props) => {
                 <thead>
                     <tr>
                         <th>
-                            Nombre
+                            Name
                             </th>
                         <th>
-                            Correo
+                            Email
                             </th>
                         <th>
-                            Enlace
-                            </th>
+                            WebSite
+                        </th>
+                        <th>
+                            Posts
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,4 +48,4 @@ const mapStateToProps = (reducers) => {
     return reducers.usersReducer;
 }
 
-export default connect(mapStateToProps)(Table);
+export default connect(mapStateToProps)(UsersTable);
